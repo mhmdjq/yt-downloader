@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Video Downloader</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #1e1e1e;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      max-width: 500px;
+      width: 100%;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #ffffff;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 20px 0;
+      background-color: #2a2a2a;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background-color: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff1a1a;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 20px;
+      }
+
+      input, select, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>YouTube Video Downloader by 3mk Mohammed</h1>
+    <input type="text" id="urlInput" placeholder="Paste YouTube link here" />
+    <select id="qualitySelect">
+      <option value="highest">Best (Auto)</option>
+      <option value="18">360p</option>
+      <option value="22">720p</option>
+      <option value="137">1080p (video only)</option>
+    </select>
+    <button onclick="download()">Download</button>
+  </div>
+
+  <script>
+    function download() {
+      const url = document.getElementById("urlInput").value;
+      const quality = document.getElementById("qualitySelect").value;
+
+      if (!url.includes("youtube.com") && !url.includes("youtu.be")) {
+        alert("Please enter a valid YouTube URL");
+        return;
+      }
+
+      window.location.href = `/download?url=${encodeURIComponent(url)}&quality=${quality}`;
+    }
+  </script>
+</body>
+</html>
